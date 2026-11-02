@@ -1,0 +1,23 @@
+{
+  "team": "TEAM 3 (github_pr_agent + architect + coder + claude_coder + qa_verifier + 3 bounty specialists)",
+  "scanned_at": "2026-11-02T17:54:45+00:00",
+  "total_candidates_scanned": 65,
+  "fast_merge_verified_count": 1,
+  "execution_mode": "CLOUD_ONLY_SHALLOW_API (No heavy local clones in /root)",
+  "top_fast_merge_bounties": [
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "issue_number": 348,
+      "title": "[wildcard] Certify cancellation-safe structured task regions through blocking-effect admission",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/348",
+      "bounty_usd": 250,
+      "labels": [
+        "\ud83d\udc8e Bounty",
+        "wildcard"
+      ],
+      "comments": 6,
+      "updated_at": "2026-11-01T19:21:54Z",
+      "repo_merged_prs_last_7d": 226
+    }
+  ]
+}

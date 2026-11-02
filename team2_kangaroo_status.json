@@ -1,0 +1,26 @@
+{
+  "engine": "libbtcpuzzle_arm64.so (ARMv8 secp256k1 128-pt Montgomery + vsha256hq_u32 + RIPEMD160)",
+  "puzzle66_self_test_passed": true,
+  "puzzle66_verification": {
+    "passed": true,
+    "puzzle_id": 66,
+    "privkey_hex": "0x2832ed74f2b5e35ee",
+    "pubkey_hex": "024ee2be2d4e9f92d2f5a4a03058617dc45befe22938feed5b7a6b7282dd74cbdd",
+    "hash160_hex": "20d45a6a762535700ce9e0b216e31994335db8a5",
+    "rc": 1
+  },
+  "keys_per_sec": 363473.9,
+  "avg_keys_per_sec": 437787.91,
+  "total_keys_checked": 196083712,
+  "active_puzzle": 68,
+  "current_range_hex": "0xec8c930c0d5ff0025..0xec8c930c0d6010024",
+  "threads": 2,
+  "batch_size_keys": 131072,
+  "targets_monitored": [
+    67,
+    68,
+    69,
+    71
+  ],
+  "updated_at": 1793642265.7530756
+}
