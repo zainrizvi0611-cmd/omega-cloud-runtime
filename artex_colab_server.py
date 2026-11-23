@@ -47,7 +47,7 @@ def run_server():
     from fastapi.responses import JSONResponse
     import uvicorn
 
-    model_id = "0XARTEX/artex-coder-7b"
+    model_id = os.environ.get("MODEL_ID") or (sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else "0XARTEX/artex-coder-7b")
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"[*] Target Device: {device.upper()}")
     if device == "cuda":
