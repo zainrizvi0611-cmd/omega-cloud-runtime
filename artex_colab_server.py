@@ -191,6 +191,46 @@ def run_server():
                         f.write(f"{tunnel_url}/v1\n")
                     break
 
+
+    # 24/7 Anti-Idle Heartbeat Worker
+    def keep_alive_heartbeat():
+        while True:
+            time.sleep(30)
+            try:
+                import urllib.request
+                with urllib.request.urlopen("http://127.0.0.1:8000/health", timeout=5) as r:
+                    pass
+            except Exception:
+                pass
+
+    threading.Thread(target=keep_alive_heartbeat, daemon=True).start()
+
+    def sync_to_github(tunnel_url):
+        gh_tok = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+        if not gh_tok:
+            return
+        try:
+            import base64, urllib.request
+            repo = "zainrizvi0611-cmd/omega-cloud-runtime"
+            url = f"https://api.github.com/repos/{repo}/contents/artex_live_endpoint.txt"
+            headers = {"Authorization": f"token {gh_tok}", "Accept": "application/vnd.github.v3+json"}
+            sha = None
+            try:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req) as resp:
+                    sha = json.loads(resp.read().decode()).get("sha")
+            except Exception:
+                pass
+            payload = {"message": "chore: auto-update 24/7 live endpoint", "content": base64.b64encode(f"{tunnel_url}/v1
+".encode()).decode()}
+            if sha:
+                payload["sha"] = sha
+            put_req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers=headers, method="PUT")
+            with urllib.request.urlopen(put_req) as r:
+                print(f"[+] 24/7 Dynamic Cloud Tracker auto-updated on GitHub: {repo}/artex_live_endpoint.txt")
+        except Exception as e:
+            print(f"[-] GitHub auto-sync notice: {e}")
+
     threading.Thread(target=start_tunnel, daemon=True).start()
 
     # Run Uvicorn server on port 8000
